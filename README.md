@@ -2,7 +2,7 @@
 
 ## Overview
 
-ai-coding-demo1 is a modern Next.js project that leverages Next.js, React, Tailwind CSS, and several other libraries to provide a robust and enjoyable development experience. This project started as a create-next-app template and has evolved to focus on clarity, documentation, and developer productivity.
+The ai-coding project is a comprehensive application designed to automate Kubernetes DevOps tasks through an intuitive user interface. The system features a split navigation UI, with a file or cluster explorer on the left, a central area for managing clusters or source files, and a change window on the right for interacting with the LLM/AI agent. This design facilitates efficient and modern DevOps workflows, catering to developers who prefer a sleek and dark mode interface. The project has evolved to prioritize clarity, documentation, and developer productivity, aligning with the high-level vision of streamlining Kubernetes operations.
 
 ## Quick Start
 
@@ -52,8 +52,8 @@ ai-coding-demo1 is a modern Next.js project that leverages Next.js, React, Tailw
 
 ## Development Experience
 
-- **Fast Iteration:** Enjoy the benefits of Next.js’s hot reloading which speeds up your development workflow.
-- **Robust Documentation:** Comprehensive guidelines and notes are available in the **/docs** folder to help you understand the project’s design, setup, and future directions.
+- **Fast Iteration:** Enjoy the benefits of Next.js's hot reloading which speeds up your development workflow.
+- **Robust Documentation:** Comprehensive guidelines and notes are available in the **/docs** folder to help you understand the project's design, setup, and future directions.
 - **Quality Assurance:** ESLint and vitest are set up to maintain high code-quality standards and facilitate testing.
 
 For any changes or dependency additions, please refer to the project guidelines before proceeding.
