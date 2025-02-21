@@ -1,5 +1,20 @@
 # ai-coding-demo1
 
+This project was built using AI -- all coding here was done through prompts with Cursor, Claude 3.5 Sonnet, Chat GPT o3-min.
+
+The [.specstory](.specstory) folder contains the history of the project, including the prompts used and the responses.
+
+Highlights:
+
+1. [Cleanup boilerplate to get to a fresh start](.specstory/history/removing-boilerplate-ui-from-next-js-project.md)
+2. [Core UI buildout (second attempt)](.specstory/history/app-framework-and-ui-layout-development.md)
+3. API Feature in Design/Plan/Code stage:
+   - [Design](.specstory/history/api-design-document-for-next-js-project.md)
+   - [Plan](.specstory/history/api-feature-implementation-plan.md)
+   - [Code](.specstory/history/api-feature-implementation-and-task-management.md)
+
+---
+
 ## Overview
 
 The ai-coding project is a comprehensive application designed to automate Kubernetes DevOps tasks through an intuitive user interface. The system features a split navigation UI, with a file or cluster explorer on the left, a central area for managing clusters or source files, and a change window on the right for interacting with the LLM/AI agent. This design facilitates efficient and modern DevOps workflows, catering to developers who prefer a sleek and dark mode interface. The project has evolved to prioritize clarity, documentation, and developer productivity, aligning with the high-level vision of streamlining Kubernetes operations.
