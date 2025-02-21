@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model KubernetesCluster {
+  id        String   @id @default(uuid())
+  name      String
+  context   String
+  status    String   // "connected" | "disconnected" | "error"
+  version   String
+  nodes     Int
+  lastSync  DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GitRepository {
+  id        String   @id @default(uuid())
+  name      String
+  url       String
+  branch    String
+  status    String   // "synced" | "syncing" | "error"
+  lastSync  DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  manifests ManifestFile[]
+}
+
+model ManifestFile {
+  id            String        @id @default(uuid())
+  path          String
+  name          String
+  type          String       // "deployment" | "service" | "configmap" | "secret" | "other"
+  lastModified  DateTime
+  content       String       // Manifest content
+  repository    GitRepository @relation(fields: [repositoryId], references: [id])
+  repositoryId  String
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([repositoryId])
+}
+
+model AgentMessage {
+  id              String   @id @default(uuid())
+  content         String   // Message content
+  type            String   // "user" | "agent"
+  timestamp       DateTime
+  relatedFiles    String?  // JSON array of file paths
+  suggestedActions String? // JSON array of actions
+  clusterContext  String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
