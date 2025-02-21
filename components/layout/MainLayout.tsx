@@ -2,16 +2,24 @@
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
+import ChatWindow from "../chat/ChatWindow";
+import Explorer from "../explorer/Explorer";
+import { TreeNode } from "../explorer/TreeView";
 
 export interface MainLayoutProps {
   children?: React.ReactNode;
+  onFileSelect?: (node: TreeNode | null) => void;
 }
 
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function MainLayout({
+  children,
+  onFileSelect,
+}: MainLayoutProps) {
   const [leftPanelWidth, setLeftPanelWidth] = useState(300);
   const [rightPanelWidth, setRightPanelWidth] = useState(400);
   const [isLeftPanelOpen, setIsLeftPanelOpen] = useState(true);
   const [isRightPanelOpen, setIsRightPanelOpen] = useState(true);
+  const [isChatExpanded, setIsChatExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   // Handle responsive layout
@@ -22,6 +30,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
       if (mobile) {
         setIsLeftPanelOpen(false);
         setIsRightPanelOpen(false);
+        setIsChatExpanded(false);
       } else {
         setIsLeftPanelOpen(true);
         setIsRightPanelOpen(true);
@@ -44,10 +53,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
       >
         <div className="h-full flex">
           <div className="flex-1 bg-gray-900 border-r border-gray-700 overflow-hidden">
-            <div className="h-full p-4">
-              <h2 className="text-xl font-semibold mb-4">Explorer</h2>
-              {/* Explorer content will go here */}
-            </div>
+            <Explorer onSelect={onFileSelect} />
           </div>
           <button
             onClick={() => setIsLeftPanelOpen(!isLeftPanelOpen)}
@@ -63,7 +69,11 @@ export default function MainLayout({ children }: MainLayoutProps) {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-grow overflow-hidden relative">
+      <div
+        className={`flex-grow overflow-hidden relative ${
+          isChatExpanded ? "hidden" : ""
+        }`}
+      >
         <div className="h-full">{children}</div>
 
         {/* Mobile overlay when panels are open */}
@@ -82,25 +92,28 @@ export default function MainLayout({ children }: MainLayoutProps) {
       <div
         className={`fixed md:relative z-20 h-full transition-all duration-300 ease-in-out ${
           isRightPanelOpen ? "right-0" : "-right-[400px] md:-right-[370px]"
-        }`}
-        style={{ width: `${rightPanelWidth}px` }}
+        } ${isChatExpanded ? "fixed inset-0 w-full" : ""}`}
+        style={isChatExpanded ? undefined : { width: `${rightPanelWidth}px` }}
       >
         <div className="h-full flex">
-          <button
-            onClick={() => setIsRightPanelOpen(!isRightPanelOpen)}
-            className="absolute left-0 top-1/2 transform -translate-x-full -translate-y-1/2 bg-gray-800 text-gray-400 hover:text-gray-100 p-1 rounded-l"
-          >
-            {isRightPanelOpen ? (
-              <ChevronRightIcon className="w-5 h-5" />
-            ) : (
-              <ChevronLeftIcon className="w-5 h-5" />
-            )}
-          </button>
+          {!isChatExpanded && (
+            <button
+              onClick={() => setIsRightPanelOpen(!isRightPanelOpen)}
+              className="absolute left-0 top-1/2 transform -translate-x-full -translate-y-1/2 bg-gray-800 text-gray-400 hover:text-gray-100 p-1 rounded-l"
+            >
+              {isRightPanelOpen ? (
+                <ChevronRightIcon className="w-5 h-5" />
+              ) : (
+                <ChevronLeftIcon className="w-5 h-5" />
+              )}
+            </button>
+          )}
           <div className="flex-1 bg-gray-900 border-l border-gray-700 overflow-hidden">
-            <div className="h-full p-4">
-              <h2 className="text-xl font-semibold mb-4">AI Agent</h2>
-              {/* AI Agent content will go here */}
-            </div>
+            <ChatWindow
+              onFileSelect={onFileSelect}
+              isExpanded={isChatExpanded}
+              onToggleExpand={() => setIsChatExpanded(!isChatExpanded)}
+            />
           </div>
         </div>
       </div>
