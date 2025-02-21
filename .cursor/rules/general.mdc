@@ -1,0 +1,9 @@
+---
+description: Important rules for working with this repo and app
+globs: *.*
+---
+- Always check with me before adding new project dependecies or reworking any existing code or patterns in the repo
+- This project uses and is already set up with these frameworks and tools (You don't need to reconfigure these things -- when in doubt, search first)
+  - Next.JS
+  - Tailwind
+  - ESLint

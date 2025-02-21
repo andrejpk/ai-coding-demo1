@@ -1,0 +1,40 @@
+---
+description:  next.js app general including Tailwind, ESLint
+globs: *.tsx;*.ts;package.json
+---
+# Next.JS Rules
+
+- Work in @../../app for pages/content
+- Use Tailwind.js for all formatting exclusively. Build components to avoid repeating values. Never create new CSS without tailwind unless there's no good way in Tailwind.
+- Use Next.js path-based routing, following modern conventions
+- Use Typescript with strict rules, no `any`
+- use Prisma to manage and access our back-end database in @schema.prisma
+- Implement proper form validation and error handling in user inputs.
+- Use React hooks effectively, creating custom hooks for reusable logic.
+- Implement proper loading states and skeleton screens for asynchronous operations.
+- Utilize Next.js API routes for backend functionality when appropriate.
+- Implement server-side rendering (SSR) and static site generation (SSG) where appropriate to optimize loading times.
+- Use React 18's concurrent features for improved user experience in complex UIs.
+- Leverage TypeScript for type safety and improved developer experience.
+- Utilize Tailwind CSS for rapid UI development and consistent styling.
+- Implement responsive design using Tailwind's utility classes.
+- Use React.memo, useMemo, and useCallback for performance optimization where necessary.
+- Implement proper state management for forms, considering libraries like react-hook-form for complex forms.
+- Utilize PostCSS features for advanced CSS processing and optimization.
+
+# Navigating the codebase
+Here are some important files to be aware of.
+
+- @tsconfig - Typescript config (ask before modifying)
+- @tailwind.config.ts - Tailwind config
+  - Use the themes here for reuse, e.g. don't add one-off colors and values unless it's extremely unlikely it can be reused
+- @eslint.config.js - ESLint config  (ask before modifying)
+- @next.config.ts - Next.js project config (ask before modifying)
+
+- @lib/utils.ts - Utility classes, mainly on UI components, e.g. for Tailwind
+
+- @lib/services/ - Wrappers for back-end services (or mocks if we are building new things out)
+- @lib/types - common Typescript types for this project that we own here or drive from external types
+- @components/ -- UI components; explore this hierarchy if you are looking to use or create any new React components to avoid duplication
+- @components/ui - reusable UI components
+- @app/ - the next.js router root using path-based routing
