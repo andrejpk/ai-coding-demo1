@@ -7,7 +7,7 @@ import { TreeNode } from "../components/explorer/TreeView";
 import MainLayout from "../components/layout/MainLayout";
 
 function getPathParts(path: string): string[] {
-  return path.split('/').filter(Boolean);
+  return path.split("/").filter(Boolean);
 }
 
 export default function Home() {
@@ -19,14 +19,16 @@ export default function Home() {
         <header className="bg-gray-800 py-1.5 px-3 border-b border-gray-700 flex items-center justify-between">
           <div className="flex items-center min-w-0">
             {/* Title - only show on larger screens or when no file is selected */}
-            <h1 className={`font-bold ${
-              selectedNode && selectedNode.type !== "folder"
-                ? "text-lg md:text-xl hidden md:block"
-                : "text-xl md:text-2xl"
-            } text-gray-100 truncate`}>
+            <h1
+              className={`font-bold ${
+                selectedNode && selectedNode.type !== "folder"
+                  ? "text-lg md:text-xl hidden md:block"
+                  : "text-xl md:text-2xl"
+              } text-gray-100 truncate`}
+            >
               Kubernetes Automation Agent
             </h1>
-            
+
             {/* File path as breadcrumbs */}
             {selectedNode && selectedNode.type !== "folder" && (
               <div className="flex items-center ml-3 text-sm text-gray-400 min-w-0">
@@ -37,11 +39,13 @@ export default function Home() {
                       {index > 0 && (
                         <span className="mx-1 text-gray-600">/</span>
                       )}
-                      <span className={`truncate ${
-                        index === array.length - 1 
-                          ? "text-blue-400 font-medium"
-                          : "text-gray-400"
-                      }`}>
+                      <span
+                        className={`truncate ${
+                          index === array.length - 1
+                            ? "text-blue-400 font-medium"
+                            : "text-gray-400"
+                        }`}
+                      >
                         {part}
                       </span>
                     </span>
