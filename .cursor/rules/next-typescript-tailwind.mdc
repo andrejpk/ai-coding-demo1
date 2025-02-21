@@ -1,5 +1,5 @@
 ---
-description:  next.js app general including Tailwind, ESLint
+description: next.js app general including Tailwind, ESLint
 globs: *.tsx;*.ts;package.json
 ---
 # Next.JS Rules
@@ -21,6 +21,7 @@ globs: *.tsx;*.ts;package.json
 - Use React.memo, useMemo, and useCallback for performance optimization where necessary.
 - Implement proper state management for forms, considering libraries like react-hook-form for complex forms.
 - Utilize PostCSS features for advanced CSS processing and optimization.
+- We are using Tailwind 3.x so use that version for Tailwind and all tailwind extensions, not 'latest'
 
 # Navigating the codebase
 Here are some important files to be aware of.
